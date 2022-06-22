@@ -6,12 +6,13 @@
 	<title>E-Buy</title>
 </head>
 <link rel="stylesheet" type="text/css" href="styles.css">
+<link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
 <body>
 	
 <nav class="topnav" id="myTopnav">
   <a href="#" class="active">Home</a>
   <a href="./products.html">Todos los productos</a>
-  <a href="./cart.html">Mi carrito</a>
+  <a href="./cart.html"><i class='bx bxs-cart'></i></a>
   <a href="javascript:void(0);" class="icon" onclick="navResponsive()">
     <i class="sandwich">
     	<div></div>
@@ -20,6 +21,7 @@
     </i>
   </a>
 </nav>
+<div id="cart"></div>
 <section class="showcase"></section>
 <script src="main.js"></script>
 </body>
