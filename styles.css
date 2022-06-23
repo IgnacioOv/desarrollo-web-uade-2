@@ -60,9 +60,10 @@ body {
 
 
 .showcase{
-  
+  justify-content: center;
   display: inline-flex;
   flex-wrap: wrap;
+  align-items: center;
 }
 
 .card{
@@ -73,6 +74,10 @@ body {
   margin: 1%;
 }
 
+
+.card h2{
+  font-size: 100%;
+}
 
 .card img{
   width: 40%;
@@ -91,10 +96,11 @@ body {
   font-size: 90%;
   font-weight: 600;
   margin: 0;
-  padding: calc(.875rem - 1px) calc(1.5rem - 1px);
+  padding: 0.5rem;
   position: relative;
-  height: 12%;
-  width: 50%;
+  height: 20%;
+  width: 30%;
+  margin: 2%;
 }
 
 .button-6:hover{
@@ -108,8 +114,25 @@ body {
 }
 
 
+@media screen and (max-width: 920px) {
 
-@media screen and (max-width: 600px) {
+  .showcase{
+    flex-direction: column;
+    flex: 100%;
+  }
+
+
+  .card{
+    width: 80%;
+  }
+
+
+  .button-6{
+    width: 30%;
+
+
+  }
+
   .topnav a:not(:first-child) {display: none;}
   .topnav a.icon {
     float: right;

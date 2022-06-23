@@ -30,7 +30,7 @@ let products = [
     id:4,
     nombre:'AMD Radeon RX 6950 XT',
     precio: 25000,
-    img:'assets/images/6950.png',
+    img:'assets/images/6090.png',
     categoria:"graficas",
   },
   {
@@ -65,24 +65,31 @@ function display(){
   }
 }
 
-const mostrarCarrito = (id) => {
+function mostrarCarrito(id){
     let cart = document.getElementById("cart")
     let product = document.createElement("article")
-    let key = carrito.productId.indexOf(id)
+    if(carrito.productId.includes(id)){
+      document.getElementById(id)
+    }
     product.setAttribute('id',id)
     product.innerHTML = `
     <h3>
       ${products[id].nombre}
     </h3>
     <h4>
-      ${carrito.cantidades[key]}
+      ${carrito.cantidades[id]}
     </h4>
     `
-    if (carrito.productId.includes[id]){
-      carrito.cantidades++
-    }
     cart.appendChild(product)
 };
+
+
+function cart_icon(){
+  if(carrito.cantidades.length > 1){
+    let cart = document.getElementsByClassName("icon")
+    
+  }
+}
 
 function add(this_object){
   let id = this_object.getAttribute("data-id")
@@ -97,7 +104,7 @@ function add(this_object){
     carrito.cantidades[id]++
     carrito.total = parseInt(carrito.total) + price
   }
-
+  console.log(carrito)
   mostrarCarrito(id)
 }
 
