@@ -37,10 +37,6 @@ body {
   
 }
 
-.topnav a.active {
-  background-color: var(--color-4);
-  color: white;
-}
 
 .topnav .icon {
   display: none;
@@ -59,7 +55,7 @@ body {
 }
 
 
-.showcase{
+.showcase, .allProducts{
   justify-content: center;
   display: inline-flex;
   flex-wrap: wrap;
@@ -114,9 +110,28 @@ body {
 }
 
 
+
+
+#cart{
+  text-align: center;
+
+}
+
+#cart li{
+  list-style: none;
+  border: 1px solid;
+  width: 50%;
+
+
+}
+
+
+
+
+
 @media screen and (max-width: 920px) {
 
-  .showcase{
+  .showcase,.allProducts{
     flex-direction: column;
     flex: 100%;
   }

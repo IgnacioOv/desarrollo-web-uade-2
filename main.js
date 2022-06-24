@@ -5,6 +5,7 @@ let products = [
     precio: 20000,
     img:'assets/images/i9.png',
     categoria:"procesadores",
+    destacado:0,
   },
   {
     id:1,
@@ -12,12 +13,14 @@ let products = [
     precio: 8000,
     img:'assets/images/3090.png',
     categoria:"graficas",
+    destacado:0,
   },
   {
     id:2,
     nombre:'SSD M.2  WD Black',
     precio: 25000,
     img:'assets/images/m2.png',
+    destacado:0,
   },
   {
     id:3,
@@ -25,6 +28,7 @@ let products = [
     precio: 25000,
     img:'assets/images/ryzen9.png',
     categoria:"procesadores",
+    destacado:0,
   },
   {
     id:4,
@@ -32,6 +36,7 @@ let products = [
     precio: 25000,
     img:'assets/images/6090.png',
     categoria:"graficas",
+    destacado:1,
   },
   {
     id:5,
@@ -39,19 +44,37 @@ let products = [
     precio: 25000,
     img:'assets/images/seagate.png',
     categoria:"almacenamiento",
+    destacado:1,
   },
 
 ]
 
+
 let carrito = {
     productId: [],
+    productName: [],
     cantidades: [],
     total: 0,
 };
 
+
+if (localStorage.carrito) {
+    carrito = JSON.parse(localStorage.carrito);
+} else {
+    localStorage.carrito = JSON.stringify(carrito);
+}
+
   
+var path = window.location.pathname;
+var page = path.split("/").pop();
+
 function display(){
+  
+  let allProducts = document.getElementsByClassName("allProducts")
+  let showcase = document.getElementsByClassName("showcase")
+
   for(key in products){
+
     let card = document.createElement("article")
     card.classList.add('card')
     card.innerHTML = `
@@ -60,52 +83,48 @@ function display(){
       <h3> $ ${products[key].precio}</h3>
       <button class="button-6 add"  onclick="add(this)" data-id="${products[key].id}" data-val="${products[key].precio}" data-cat="1" >Add to cart</button>
     `
-    let main = document.getElementsByClassName("showcase")
-    main[0].appendChild(card);
-  }
-}
 
-function mostrarCarrito(id){
-    let cart = document.getElementById("cart")
-    let product = document.createElement("article")
-    if(carrito.productId.includes(id)){
-      document.getElementById(id)
+    if(page == "products.html"){
+
+      allProducts[0].appendChild(card)
+
     }
-    product.setAttribute('id',id)
-    product.innerHTML = `
-    <h3>
-      ${products[id].nombre}
-    </h3>
-    <h4>
-      ${carrito.cantidades[id]}
-    </h4>
-    `
-    cart.appendChild(product)
-};
 
-
-function cart_icon(){
-  if(carrito.cantidades.length > 1){
-    let cart = document.getElementsByClassName("icon")
-    
+    if(products[key].destacado == 1 && page == "index.html"){
+      showcase[0].appendChild(card);
+    }
+  
   }
 }
+
+function mostrarCarrito(){
+    let cart = document.getElementById("cart")
+    
+    cart.innerHTML = 
+    `<li>Productos: ${carrito.productName}</li><li>Cantidades: ${carrito.cantidades} (${carrito.cantidades.reduce((acum, n) => acum + n, 0)})</li><li>Total: $${carrito.total}</li>`;
+    }
+
 
 function add(this_object){
   let id = this_object.getAttribute("data-id")
   let price = this_object.getAttribute("data-val")
+  let index = carrito.productId.indexOf(id);
   price = parseInt(price)
-
+  let name = products[id].nombre
   if(!carrito.productId.includes(id)){
     carrito.productId.push(id)
     carrito.cantidades.push(1)
+    carrito.productName.push(name)
     carrito.total = parseInt(carrito.total) + price
   }else{
-    carrito.cantidades[id]++
+    carrito.cantidades[index]++
     carrito.total = parseInt(carrito.total) + price
   }
-  console.log(carrito)
-  mostrarCarrito(id)
+  localStorage.carrito = JSON.stringify(carrito);
+ if(page == 'cart.js'){
+  mostrarCarrito()
+	}
+  
 }
 
 
@@ -118,4 +137,18 @@ function navResponsive() {
   }
 }
 
-display()
+switch(page){
+	case 'index.html':
+		display()
+		break;
+	case 'products.html':
+		display()
+		break;
+	case 'cart.html':
+		mostrarCarrito()
+		break;
+
+
+}
+
+
