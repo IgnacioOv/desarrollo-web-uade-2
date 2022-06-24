@@ -1,5 +1,12 @@
+/*Ignacio Oliva Velez */
+
+
+/* importo la font */
+
 @import url('https://fonts.googleapis.com/css2?family=Shippori+Antique&display=swap');
 
+
+/* declaro variables de colores */
 
 :root{
   --color-1: #f6fff8;
@@ -9,13 +16,13 @@
   --color-5: #6b9080;
 }
 
-
-
 body {
   margin: 0;
   font-family: 'Shippori Antique', sans-serif;
   background-color: var(--color-1);
 }
+
+/* nav */
 
 .topnav {
   overflow: hidden;
@@ -54,6 +61,7 @@ body {
   margin: 3px 0;
 }
 
+/* muestra de tarjetas de productos */
 
 .showcase, .allProducts{
   justify-content: center;
@@ -80,6 +88,8 @@ body {
   height: 40%;
 }
 
+/* botones */
+
 .button-6 {
   align-items: center;
   background-color: #FFFFFF;
@@ -93,7 +103,7 @@ body {
   font-weight: 600;
   margin: 0;
   padding: 0.5rem;
-  position: relative;
+  text-decoration: none;
   height: 20%;
   width: 30%;
   margin: 2%;
@@ -110,24 +120,59 @@ body {
 }
 
 
-
+.greet{
+  text-align: center;
+  font-size: 90%;
+}
 
 #cart{
+  margin: 0;
+  padding: 0;
   text-align: center;
-
 }
 
 #cart li{
   list-style: none;
-  border: 1px solid;
-  width: 50%;
-
+  border: 0.2px outset;
+  width: 100%;
+  font-size: 1.5rem;
+  text-align: left;
 
 }
 
+.top {
+  text-align: center;
+  background-color: var(--color-3);
+}
 
 
+/* css para el detalle */
 
+#img-title{
+  display: flex;
+  flex-direction: row;
+}
+
+#img-title h1{
+  padding-top: 7%;
+}
+#detail-container{
+  text-align: center;
+}
+
+
+#detail-container img{
+  height: 30%;
+  width: 30%;
+}
+
+#detail-container button{
+  height: 15%;
+  width: 50%;
+}
+
+
+/* responsiveness */
 
 @media screen and (max-width: 920px) {
 
@@ -143,9 +188,20 @@ body {
 
 
   .button-6{
-    width: 30%;
+    width: 20%;
 
 
+  }
+
+  #detail-container img{
+  height: 60%;
+  width: 60%;
+  }
+
+
+  #img-title{
+  display: flex;
+  flex-direction: column;
   }
 
   .topnav a:not(:first-child) {display: none;}
